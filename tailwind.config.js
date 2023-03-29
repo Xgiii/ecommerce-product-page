@@ -17,6 +17,20 @@ module.exports = {
         white: 'hsl(0, 0%, 100%)',
         black: 'hsl(0, 0%, 0%)',
       },
+      animation: {
+        'fade-in': 'fade-in .15s ease-in-out',
+        'fade-out': 'fade-out .15s ease-in-out',
+      },
+      keyframes: {
+        'fade-in': {
+          from: { opacity: 0 },
+          to: { opacity: 0.5 },
+        },
+        'fade-out': {
+          from: { opacity: 0.5 },
+          to: { opacity: 0 },
+        },
+      },
     },
   },
   plugins: [],
