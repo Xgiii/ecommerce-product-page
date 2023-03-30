@@ -1,10 +1,13 @@
 'use client';
 
 import Image from 'next/image';
+import { useState } from 'react';
 
 export default function Home() {
+  const [numOfItems, setNumOfItems] = useState(0);
+
   return (
-    <div className='p-16 grid grid-cols-1 md:grid-cols-2 gap-16 justify-between'>
+    <div className='md:p-16 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16 justify-between'>
       <Image
         src='/images/image-product-1.jpg'
         alt='product image 1'
@@ -34,22 +37,39 @@ export default function Home() {
           $250.00{' '}
           <hr className='absolute top-1/2 left-0 w-full border-grayishBlue' />
         </div>
-        <div className='flex items-center my-4'>
-          <div className='bg-lightGrayishBlue flex items-center justify-between px-4 py-2 space-x-6'>
-            <Image
-              src='/images/icon-plus.svg'
-              alt='plus icon'
-              width={12}
-              height={12}
-            />
-            <p>0</p>
+        <div className='flex justify-between items-center my-4'>
+          <div className='bg-lightGrayishBlue rounded-lg flex items-center justify-between w-[30%] px-5 py-3 space-x-6'>
             <Image
               src='/images/icon-minus.svg'
               alt='minus icon'
+              className='cursor-pointer'
+              onClick={() =>
+                setNumOfItems((prevItems) =>
+                  prevItems <= 0 ? 0 : prevItems - 1
+                )
+              }
               width={12}
               height={4}
             />
+            <p className='font-bold'>{numOfItems}</p>
+            <Image
+              src='/images/icon-plus.svg'
+              alt='plus icon'
+              className='cursor-pointer'
+              onClick={() => setNumOfItems((prevItems) => prevItems + 1)}
+              width={12}
+              height={12}
+            />
           </div>
+          <button className='flex justify-center space-x-2 w-[65%] py-3 bg-orange rounded-lg text-white font-bold shadow-xl shadow-orange/40'>
+            <Image
+              src='/images/icon-cart-white.svg'
+              alt='cart icon'
+              width={22}
+              height={20}
+            />
+            <p>Add to cart</p>
+          </button>
         </div>
       </div>
     </div>
