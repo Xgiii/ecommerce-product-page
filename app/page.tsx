@@ -1,13 +1,33 @@
 'use client';
 
+import { cartActions } from '@/features/cart/cartSlice';
+import { useAppDispatch, useAppSelector } from '@/hooks';
 import Image from 'next/image';
 import { useState } from 'react';
 
 export default function Home() {
-  const [numOfItems, setNumOfItems] = useState(0);
+  const [numOfItems, setNumOfItems] = useState(1);
+  const dispatch = useAppDispatch();
+
+  const { items } = useAppSelector((state) => state.cart);
+
+  console.log(items);
+  console.log(numOfItems);
+
+  function addToCartHandler() {
+    dispatch(
+      cartActions.addItem({
+        name: 'Fall Limited Edition Sneakers',
+        price: 125,
+        id: 1,
+        quantity: numOfItems,
+        totalPrice: numOfItems * 125,
+      })
+    );
+  }
 
   return (
-    <div className='md:p-16 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16 justify-between'>
+    <div className='md:p-16 grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-16 justify-between'>
       <Image
         src='/images/image-product-1.jpg'
         alt='product image 1'
@@ -38,14 +58,14 @@ export default function Home() {
           <hr className='absolute top-1/2 left-0 w-full border-grayishBlue' />
         </div>
         <div className='flex justify-between items-center my-4'>
-          <div className='bg-lightGrayishBlue rounded-lg flex items-center justify-between w-[30%] px-5 py-3 space-x-6'>
+          <div className='bg-lightGrayishBlue rounded-lg flex items-center justify-between w-[35%] px-5 py-3 space-x-6'>
             <Image
               src='/images/icon-minus.svg'
               alt='minus icon'
               className='cursor-pointer'
               onClick={() =>
                 setNumOfItems((prevItems) =>
-                  prevItems <= 0 ? 0 : prevItems - 1
+                  prevItems <= 1 ? 1 : prevItems - 1
                 )
               }
               width={12}
@@ -61,7 +81,10 @@ export default function Home() {
               height={12}
             />
           </div>
-          <button className='flex justify-center space-x-2 w-[65%] py-3 bg-orange rounded-lg text-white font-bold shadow-xl shadow-orange/40'>
+          <button
+            onClick={addToCartHandler}
+            className='flex justify-center space-x-2 w-[60%] py-3 bg-orange rounded-lg text-white font-bold shadow-xl shadow-orange/40 transition-all duration-300 hover:shadow-2xl hover:shadow-orange/80'
+          >
             <Image
               src='/images/icon-cart-white.svg'
               alt='cart icon'
