@@ -1,10 +1,23 @@
 'use client';
 
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import Cart from './Cart';
+import { useAppSelector } from '@/hooks';
 
 function MainHeader() {
   const [mobileMenu, setMobileMenu] = useState(false);
+  const [openCart, setOpenCart] = useState(false);
+  const [animateQty, setAnimateQty] = useState(false);
+
+  const { totalQty } = useAppSelector((state) => state.cart);
+
+  useEffect(() => {
+    setAnimateQty(true);
+    setTimeout(() => {
+      setAnimateQty(false)
+    }, 500);
+  }, [totalQty]);
 
   return (
     <>
@@ -41,13 +54,26 @@ function MainHeader() {
             <li>Contact</li>
           </ul>
         </div>
-        <div className='flex items-center space-x-6 md:space-x-12'>
-          <Image
-            src='/images/icon-cart.svg'
-            alt='cart icon'
-            width={22}
-            height={20}
-          />
+        <div className='flex items-center space-x-6 md:space-x-12 relative'>
+          <div className='relative'>
+            <Image
+              src='/images/icon-cart.svg'
+              alt='cart icon'
+              className='cursor-pointer '
+              onClick={() => setOpenCart((prevState) => !prevState)}
+              width={22}
+              height={20}
+            />
+            {totalQty > 0 && (
+              <div
+                className={`absolute -top-3 -right-2 bg-orange flex items-center justify-center text-white font-bold rounded-full text-xs w-5 h-5 ${
+                  animateQty && 'animate-pulse-once'
+                }`}
+              >
+                {totalQty}
+              </div>
+            )}
+          </div>
           <Image
             src='/images/image-avatar.png'
             alt='user avatar'
@@ -55,6 +81,7 @@ function MainHeader() {
             width={50}
             height={50}
           />
+          {openCart && <Cart />}
         </div>
       </header>
       <hr />

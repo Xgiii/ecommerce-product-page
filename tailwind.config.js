@@ -20,6 +20,7 @@ module.exports = {
       animation: {
         'fade-in': 'fade-in .15s ease-in-out',
         'fade-out': 'fade-out .15s ease-in-out',
+        'pulse-once': 'pulse-once .5s ease-in-out',
       },
       keyframes: {
         'fade-in': {
@@ -29,6 +30,11 @@ module.exports = {
         'fade-out': {
           from: { opacity: 0.5 },
           to: { opacity: 0 },
+        },
+        'pulse-once': {
+          '0%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(1.25)' },
+          '100%': { transform: 'scale(1)' },
         },
       },
     },
