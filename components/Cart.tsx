@@ -1,13 +1,22 @@
 'use client';
 
-import { useAppSelector } from '@/hooks';
+import { cartActions } from '@/features/cart/cartSlice';
+import { useAppDispatch, useAppSelector } from '@/hooks';
 import Image from 'next/image';
 
 function Cart() {
   const { items } = useAppSelector((state) => state.cart);
+  const dispatch = useAppDispatch();
+
+  console.log(items);
+  
+
+  function removeItemFromCartHandler(id: number) {
+    dispatch(cartActions.removeItem(id));
+  }
 
   return (
-    <div className='fixed md:absolute top-14 left-0 md:-left-[40vw] lg:-left-[20vw] w-[calc(100vw-3rem)] md:w-[50vw] lg:w-[30vw]  bg-white shadow-2xl rounded-lg p-4'>
+    <div className='fixed md:absolute top-14 left-0 md:-left-[40vw] lg:-left-[20vw] w-[calc(100vw-3rem)] md:w-[50vw] lg:w-[30vw] min-h-[12rem] bg-white shadow-2xl rounded-lg p-4'>
       <h1 className='font-bold pb-4'>Cart</h1>
       <hr className='absolute w-full left-0' />
       {items.length === 0 ? (
@@ -37,8 +46,10 @@ function Cart() {
               </p>
             </div>
             <Image
+              onClick={() => removeItemFromCartHandler(item.id)}
               src='/images/icon-delete.svg'
               alt='trash icon'
+              className='cursor-pointer'
               width={14}
               height={16}
             />
