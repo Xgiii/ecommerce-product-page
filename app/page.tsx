@@ -3,11 +3,12 @@
 import { cartActions } from '@/features/cart/cartSlice';
 import { useAppDispatch } from '@/hooks';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Slider, { Settings } from 'react-slick';
 
 export default function Home() {
   const [numOfItems, setNumOfItems] = useState(1);
+  const [screenWidth, setScreenWidth] = useState(1920);
   const dispatch = useAppDispatch();
 
   function addToCartHandler() {
@@ -22,7 +23,11 @@ export default function Home() {
     );
   }
 
-  const arrows = window.screen.width >= 1024 ? false : true;
+  useEffect(() => {
+    setScreenWidth(window?.innerWidth);
+  }, []);
+
+  const arrows = screenWidth >= 1024 ? false : true;
 
   const settings: Settings = {
     customPaging: function (i: number) {
