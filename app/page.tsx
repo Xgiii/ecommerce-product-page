@@ -62,8 +62,8 @@ export default function Home() {
   };
 
   return (
-    <div className='md:p-16 grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-16 justify-between'>
-      <Slider {...settings}>
+    <div className='md:p-16 grid grid-cols-1 lg:grid-cols-2 gap-6 justify-between'>
+      <Slider {...settings} className='lg:py-4 lg:w-[85%]'>
         <Image
           src='/images/image-product-1.jpg'
           alt='product image 1'
