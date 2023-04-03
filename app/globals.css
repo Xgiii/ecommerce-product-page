@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.slick-dots.slick-thumb li {
+  @apply hidden lg:inline-block w-16;
+}
+
+.slick-dots.slick-thumb li img {
+  @apply border-[3px] border-white;
+}
+
+.slick-dots.slick-thumb li.slick-active img {
+  @apply border-[3px] border-orange;
+}

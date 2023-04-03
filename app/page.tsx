@@ -1,18 +1,14 @@
 'use client';
 
 import { cartActions } from '@/features/cart/cartSlice';
-import { useAppDispatch, useAppSelector } from '@/hooks';
+import { useAppDispatch } from '@/hooks';
 import Image from 'next/image';
 import { useState } from 'react';
+import Slider, { Settings } from 'react-slick';
 
 export default function Home() {
   const [numOfItems, setNumOfItems] = useState(1);
   const dispatch = useAppDispatch();
-
-  const { items } = useAppSelector((state) => state.cart);
-
-  console.log(items);
-  console.log(numOfItems);
 
   function addToCartHandler() {
     dispatch(
@@ -26,15 +22,78 @@ export default function Home() {
     );
   }
 
+  const arrows = window.screen.width >= 1024 ? false : true;
+
+  const settings: Settings = {
+    customPaging: function (i: number) {
+      return (
+        <Image
+          src={`/images/image-product-${i + 1}-thumbnail.jpg`}
+          alt='gallery image'
+          className='rounded-lg thumb'
+          width={300}
+          height={300}
+        />
+      );
+    },
+    dots: true,
+    dotsClass: 'slick-dots slick-thumb',
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: arrows,
+    nextArrow: (
+      <Image
+        src='/images/icon-next.svg'
+        alt='next image icon'
+        width={12}
+        height={18}
+      />
+    ),
+    prevArrow: (
+      <Image
+        src='/images/icon-previous.svg'
+        alt='previous image icon'
+        width={12}
+        height={18}
+      />
+    ),
+  };
+
   return (
     <div className='md:p-16 grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-16 justify-between'>
-      <Image
-        src='/images/image-product-1.jpg'
-        alt='product image 1'
-        width={1920}
-        height={1080}
-        className='rounded-lg'
-      />
+      <Slider {...settings}>
+        <Image
+          src='/images/image-product-1.jpg'
+          alt='product image 1'
+          width={1920}
+          height={1080}
+          className='rounded-lg overflow-hidden'
+        />
+        <Image
+          src='/images/image-product-2.jpg'
+          alt='product image 2'
+          width={1920}
+          height={1080}
+          className='rounded-lg overflow-hidden'
+        />
+        <Image
+          src='/images/image-product-3.jpg'
+          alt='product image 3'
+          width={1920}
+          height={1080}
+          className='rounded-lg overflow-hidden'
+        />
+        <Image
+          src='/images/image-product-4.jpg'
+          alt='product image 4'
+          width={1920}
+          height={1080}
+          className='rounded-lg overflow-hidden'
+        />
+      </Slider>
+
       <div className='flex flex-col'>
         <h2 className='text-orange tracking-widest font-bold py-4'>
           SNEAKER COMPANY

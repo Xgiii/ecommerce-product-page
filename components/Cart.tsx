@@ -8,9 +8,6 @@ function Cart() {
   const { items } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
 
-  console.log(items);
-  
-
   function removeItemFromCartHandler(id: number) {
     dispatch(cartActions.removeItem(id));
   }

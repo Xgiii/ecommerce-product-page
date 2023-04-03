@@ -15,7 +15,7 @@ function MainHeader() {
   useEffect(() => {
     setAnimateQty(true);
     setTimeout(() => {
-      setAnimateQty(false)
+      setAnimateQty(false);
     }, 500);
   }, [totalQty]);
 
@@ -30,13 +30,13 @@ function MainHeader() {
         }}
       ></div>
       <header className='flex justify-between items-center py-4 md:py-10'>
-        <div className='flex items-end md:items-center'>
+        <div className='flex items-end lg:items-center'>
           <Image
             src='/images/icon-menu.svg'
             alt='menu icon'
             width={16}
             height={15}
-            className='block md:hidden mr-4 cursor-pointer'
+            className='block lg:hidden mr-4 cursor-pointer'
             onClick={() => setMobileMenu(true)}
           />
           <Image
@@ -46,7 +46,7 @@ function MainHeader() {
             height={20}
             className='mr-12'
           />
-          <ul className='md:flex items-center text-darkGrayishBlue space-x-6 hidden [&>*]:cursor-pointer'>
+          <ul className='lg:flex items-center text-darkGrayishBlue space-x-6 hidden [&>*]:cursor-pointer'>
             <li>Collections</li>
             <li>Men</li>
             <li>Women</li>
@@ -54,13 +54,14 @@ function MainHeader() {
             <li>Contact</li>
           </ul>
         </div>
-        <div className='flex items-center space-x-6 md:space-x-12 relative'>
-          <div className='relative'>
+        <div className='flex items-center space-x-6 lg:space-x-12 relative'>
+          <div
+            className='relative cursor-pointer'
+            onClick={() => setOpenCart((prevState) => !prevState)}
+          >
             <Image
               src='/images/icon-cart.svg'
               alt='cart icon'
-              className='cursor-pointer '
-              onClick={() => setOpenCart((prevState) => !prevState)}
               width={22}
               height={20}
             />
@@ -77,7 +78,7 @@ function MainHeader() {
           <Image
             src='/images/image-avatar.png'
             alt='user avatar'
-            className='w-[30px] h-[30px] md:w-[50px] md:h-[50px]'
+            className='w-[30px] h-[30px] lg:w-[50px] lg:h-[50px]'
             width={50}
             height={50}
           />
@@ -86,7 +87,7 @@ function MainHeader() {
       </header>
       <hr />
       <div
-        className={`absolute top-0 h-screen w-2/3 bg-white z-20 p-6 md:hidden backdrop-brightness-0 transition-all ${
+        className={`absolute top-0 h-screen w-2/3 bg-white z-20 p-6 lg:hidden backdrop-brightness-0 transition-all ${
           mobileMenu ? 'left-0' : '-left-full'
         }`}
       >
@@ -95,7 +96,7 @@ function MainHeader() {
           alt='menu close icon'
           width={16}
           height={15}
-          className='block md:hidden mr-4 cursor-pointer'
+          className='block lg:hidden mr-4 cursor-pointer'
           onClick={() => setMobileMenu(false)}
         />
         <ul
