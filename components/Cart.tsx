@@ -13,7 +13,7 @@ function Cart() {
   }
 
   return (
-    <div className='fixed md:absolute top-14 left-0 md:-left-[40vw] lg:-left-[20vw] w-[calc(100vw-3rem)] md:w-[50vw] lg:w-[30vw] min-h-[12rem] bg-white shadow-2xl rounded-lg p-4'>
+    <div className='fixed md:absolute top-14 left-0 md:-left-[40vw] lg:-left-[20vw] w-[calc(100vw-3.9rem)] md:w-[50vw] lg:w-[30vw] min-h-[12rem] bg-white shadow-2xl rounded-lg p-4 z-50'>
       <h1 className='font-bold pb-4'>Cart</h1>
       <hr className='absolute w-full left-0' />
       {items.length === 0 ? (
