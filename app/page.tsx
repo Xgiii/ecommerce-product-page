@@ -1,5 +1,6 @@
 'use client';
 
+import FadeInWrapper from '@/components/FadeInWrapper';
 import { cartActions } from '@/features/cart/cartSlice';
 import { useAppDispatch } from '@/hooks';
 import Image from 'next/image';
@@ -67,98 +68,100 @@ export default function Home() {
   };
 
   return (
-    <div className='md:p-16 grid grid-cols-1 lg:grid-cols-2 gap-6 justify-between'>
-      <Slider {...settings} className='lg:py-4 lg:w-[85%]'>
-        <Image
-          src='/images/image-product-1.jpg'
-          alt='product image 1'
-          width={1920}
-          height={1080}
-          className='rounded-lg overflow-hidden'
-        />
-        <Image
-          src='/images/image-product-2.jpg'
-          alt='product image 2'
-          width={1920}
-          height={1080}
-          className='rounded-lg overflow-hidden'
-        />
-        <Image
-          src='/images/image-product-3.jpg'
-          alt='product image 3'
-          width={1920}
-          height={1080}
-          className='rounded-lg overflow-hidden'
-        />
-        <Image
-          src='/images/image-product-4.jpg'
-          alt='product image 4'
-          width={1920}
-          height={1080}
-          className='rounded-lg overflow-hidden'
-        />
-      </Slider>
+    <FadeInWrapper>
+      <div className='md:p-16 grid grid-cols-1 lg:grid-cols-2 gap-6 justify-between'>
+        <Slider {...settings} className='lg:py-4 lg:w-[85%]'>
+          <Image
+            src='/images/image-product-1.jpg'
+            alt='product image 1'
+            width={1920}
+            height={1080}
+            className='rounded-lg overflow-hidden'
+          />
+          <Image
+            src='/images/image-product-2.jpg'
+            alt='product image 2'
+            width={1920}
+            height={1080}
+            className='rounded-lg overflow-hidden'
+          />
+          <Image
+            src='/images/image-product-3.jpg'
+            alt='product image 3'
+            width={1920}
+            height={1080}
+            className='rounded-lg overflow-hidden'
+          />
+          <Image
+            src='/images/image-product-4.jpg'
+            alt='product image 4'
+            width={1920}
+            height={1080}
+            className='rounded-lg overflow-hidden'
+          />
+        </Slider>
 
-      <div className='flex flex-col'>
-        <h2 className='text-orange tracking-widest font-bold py-4'>
-          SNEAKER COMPANY
-        </h2>
-        <h1 className='text-black text-5xl font-bold'>
-          Fall Limited Edition Sneakers
-        </h1>
-        <p className='text-darkGrayishBlue py-8'>
-          These low-profile sneakers are your perfect casual wear companion.
-          Featuring a durable rubber outer sole, they&apos;ll withstand
-          everything the weather can offer.
-        </p>
-        <div className='flex items-center'>
-          <p className='font-bold text-3xl mr-6'>$125.00</p>
-          <div className='bg-paleOrange text-orange px-2 py-1 rounded-md font-bold '>
-            50%
+        <div className='flex flex-col'>
+          <h2 className='text-orange tracking-widest font-bold py-4'>
+            SNEAKER COMPANY
+          </h2>
+          <h1 className='text-black text-5xl font-bold'>
+            Fall Limited Edition Sneakers
+          </h1>
+          <p className='text-darkGrayishBlue py-8'>
+            These low-profile sneakers are your perfect casual wear companion.
+            Featuring a durable rubber outer sole, they&apos;ll withstand
+            everything the weather can offer.
+          </p>
+          <div className='flex items-center'>
+            <p className='font-bold text-3xl mr-6'>$125.00</p>
+            <div className='bg-paleOrange text-orange px-2 py-1 rounded-md font-bold '>
+              50%
+            </div>
           </div>
-        </div>
-        <div className='relative text-grayishBlue w-[59px]'>
-          $250.00{' '}
-          <hr className='absolute top-1/2 left-0 w-full border-grayishBlue' />
-        </div>
-        <div className='flex justify-between items-center my-4'>
-          <div className='bg-lightGrayishBlue rounded-lg flex items-center justify-between w-[35%] px-5 py-3 space-x-6'>
-            <Image
-              src='/images/icon-minus.svg'
-              alt='minus icon'
-              className='cursor-pointer'
-              onClick={() =>
-                setNumOfItems((prevItems) =>
-                  prevItems <= 1 ? 1 : prevItems - 1
-                )
-              }
-              width={12}
-              height={4}
-            />
-            <p className='font-bold'>{numOfItems}</p>
-            <Image
-              src='/images/icon-plus.svg'
-              alt='plus icon'
-              className='cursor-pointer'
-              onClick={() => setNumOfItems((prevItems) => prevItems + 1)}
-              width={12}
-              height={12}
-            />
+          <div className='relative text-grayishBlue w-[59px]'>
+            $250.00{' '}
+            <hr className='absolute top-1/2 left-0 w-full border-grayishBlue' />
           </div>
-          <button
-            onClick={addToCartHandler}
-            className='flex justify-center space-x-2 w-[60%] py-3 bg-orange rounded-lg text-white font-bold shadow-xl shadow-orange/40 transition-all duration-300 hover:shadow-2xl hover:shadow-orange/80'
-          >
-            <Image
-              src='/images/icon-cart-white.svg'
-              alt='cart icon'
-              width={22}
-              height={20}
-            />
-            <p>Add to cart</p>
-          </button>
+          <div className='flex justify-between items-center my-4'>
+            <div className='bg-lightGrayishBlue rounded-lg flex items-center justify-between w-[35%] px-5 py-3 space-x-6'>
+              <Image
+                src='/images/icon-minus.svg'
+                alt='minus icon'
+                className='cursor-pointer'
+                onClick={() =>
+                  setNumOfItems((prevItems) =>
+                    prevItems <= 1 ? 1 : prevItems - 1
+                  )
+                }
+                width={12}
+                height={4}
+              />
+              <p className='font-bold'>{numOfItems}</p>
+              <Image
+                src='/images/icon-plus.svg'
+                alt='plus icon'
+                className='cursor-pointer'
+                onClick={() => setNumOfItems((prevItems) => prevItems + 1)}
+                width={12}
+                height={12}
+              />
+            </div>
+            <button
+              onClick={addToCartHandler}
+              className='flex justify-center space-x-2 w-[60%] py-3 bg-orange rounded-lg text-white font-bold shadow-xl shadow-orange/40 transition-all duration-300 hover:shadow-2xl hover:shadow-orange/80'
+            >
+              <Image
+                src='/images/icon-cart-white.svg'
+                alt='cart icon'
+                width={22}
+                height={20}
+              />
+              <p>Add to cart</p>
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </FadeInWrapper>
   );
 }
